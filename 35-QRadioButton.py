@@ -36,7 +36,7 @@ female_rb.move(10, 50)
 
 female_rb.setIcon(QIcon("a.png"))
 female_rb.setIconSize(QSize(60, 60))
-female_rb.toggled.connect(lambda is_checked: print(is_checked))
+# female_rb.toggled.connect(lambda is_checked: print(is_checked))
 
 sex_group = QButtonGroup(window)
 sex_group.addButton(male_rb, 1)
@@ -48,28 +48,36 @@ sex_group.addButton(female_rb, 2)
 
 # 2.3 展示控件
 
-rb_ok = QRadioButton("ok", green)
-rb_ok.move(30, 10)
-rb_ok.setChecked(True)
+rb_yes = QRadioButton("ok", green)
+rb_yes.move(30, 10)
+rb_yes.setChecked(True)
 rb_no = QRadioButton("no", green)
 rb_no.move(30, 60)
 
-yes_group = QButtonGroup(window)
-yes_group.addButton(rb_ok, 3)
-yes_group.addButton(rb_no, 4)
+answer_group = QButtonGroup(window)
+answer_group.addButton(rb_yes, 3)
+answer_group.addButton(rb_no, 4)
 
-yes_group.setId(rb_ok, 1)
-yes_group.setId(rb_no, 2)
+answer_group.setId(rb_yes, 1)
+answer_group.setId(rb_no, 2)
 
-print(yes_group.id(rb_ok))
-print(yes_group.id(rb_no))
-print(yes_group.checkedId())
+# print(yes_group.id(rb_ok))
+# print(yes_group.id(rb_no))
+# print(yes_group.checkedId())
 
 # sex_group.removeButton(female_rb)
 #
 # print(sex_group.buttons())
 # print(sex_group.button(2))
 # print("选中了", sex_group.checkedButton())
+
+
+def test(val):
+    print(sex_group.id(val))
+sex_group.buttonClicked.connect(test)
+# sex_group.buttonClicked[int].connect(test)
+
+
 
 
 window.show()
